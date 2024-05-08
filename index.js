@@ -1,14 +1,18 @@
-function maxEnvelopes(envelopes) {
-  envelopes.sort((a, b) => a[0] - b[0] || b[1] - a[1]);
-  const dp = new Array(envelopes.length).fill(1);
-  let max = 1;
-  for (let i = 1; i < envelopes.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (envelopes[i][1] > envelopes[j][1]) {
-        dp[i] = Math.max(dp[i], dp[j] + 1);
-        max = Math.max(max, dp[i]);
+function detectCycle(head) {
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) {
+      let p1 = head;
+      let p2 = slow;
+      while (p1 !== p2) {
+        p1 = p1.next;
+        p2 = p2.next;
       }
+      return p1;
     }
   }
-  return max;
+  return null;
 }
