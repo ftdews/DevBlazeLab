@@ -1,18 +1,14 @@
-function detectCycle(head) {
-  let slow = head;
-  let fast = head;
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-    if (slow === fast) {
-      let p1 = head;
-      let p2 = slow;
-      while (p1 !== p2) {
-        p1 = p1.next;
-        p2 = p2.next;
+function wordBreak(s, wordDict) {
+  const wordSet = new Set(wordDict);
+  const dp = new Array(s.length + 1).fill(false);
+  dp[0] = true;
+  for (let end = 1; end <= s.length; end++) {
+    for (let start = 0; start < end; start++) {
+      if (dp[start] && wordSet.has(s.substring(start, end))) {
+        dp[end] = true;
+        break;
       }
-      return p1;
     }
   }
-  return null;
+  return dp[s.length];
 }
