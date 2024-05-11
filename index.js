@@ -1,9 +1,4 @@
-function maxProfit(prices) {
-  let minPrice = Infinity;
-  let maxProfit = 0;
-  for (const price of prices) {
-    minPrice = Math.min(minPrice, price);
-    maxProfit = Math.max(maxProfit, price - minPrice);
-  }
-  return maxProfit;
+function largestNumber(nums) {
+  if (nums.every((num) => num === 0)) return "0";
+  return nums.sort((a, b) => `${b}${a}` - `${a}${b}`).join("");
 }
