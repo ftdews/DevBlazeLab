@@ -1,1 +1,1 @@
-const uniqueValues = (arr) => [...new Set(arr)];
+const initial = (arr) => arr.slice(0, -1);
